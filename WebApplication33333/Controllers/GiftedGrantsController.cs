@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication33333.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplication33333.Controllers
 {
@@ -29,32 +31,29 @@ namespace WebApplication33333.Controllers
 
 
         // GET: GiftedGrants/Create
+        [HttpGet ]
         public IActionResult Create()
         {
+            Console.WriteLine("saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             ViewData["GrantName"] = new SelectList(_context.GrantsInfos, "GrantName", "GrantName");
             ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id");
 
-            // Здесь убираем создание выпадающего списка для GrantValue, если он не нужен
+           
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,GrantName,GrantValue")] GiftedGrant giftedGrant)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(giftedGrant);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
 
-            // Если модель не валидна, возвращаем данные для выпадающих списков
-            ViewData["GrantName"] = new SelectList(_context.GrantsInfos, "GrantName", "GrantName", giftedGrant.GrantName);
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", giftedGrant.StudentId);
-            return View(giftedGrant);
+        [HttpPost]
+        public async Task<IActionResult> Create(int? StudentId, string? GrantName, int? GrantValue)
+        {
+            Console.WriteLine("saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            _context.Add(new GiftedGrant { GrantName = GrantName, StudentId = StudentId, GrantValue = GrantValue });
+
+            await _context.SaveChangesAsync();
+            return View("Index");
         }
 
+ 
 
         // GET: GiftedGrants/Edit/5
         public async Task<IActionResult> Edit(int? id)

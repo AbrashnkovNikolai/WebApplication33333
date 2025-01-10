@@ -11,8 +11,8 @@ using WebApplication33333.Models;
 namespace WebApplication33333.Migrations
 {
     [DbContext(typeof(Dz2Context))]
-    [Migration("20250110031119_negr")]
-    partial class negr
+    [Migration("20250110080140_rebot")]
+    partial class rebot
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,8 @@ namespace WebApplication33333.Migrations
                 {
                     b.Property<long>("GroupId")
                         .HasColumnType("bigint")
-                        .HasColumnName("group_id");
+                        .HasColumnName("group_id")
+                        .HasDefaultValueSql("nextval('group_id_seq'::regclass)");
 
                     b.Property<string>("Faculty1")
                         .IsRequired()
@@ -56,7 +57,7 @@ namespace WebApplication33333.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("Id")
-                        .HasDefaultValueSql("nextval('student_info_id_seq'::regclass)");
+                        .HasDefaultValueSql("nextval('Id_seq'::regclass)");
 
                     b.Property<string>("GrantName")
                         .IsRequired()
@@ -117,7 +118,7 @@ namespace WebApplication33333.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("Id")
-                        .HasDefaultValueSql("nextval('student_info_id_seq'::regclass)");
+                        .HasDefaultValueSql("nextval('Id_seq'::regclass)");
 
                     b.Property<string>("Degree")
                         .IsRequired()

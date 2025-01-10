@@ -41,6 +41,9 @@ public partial class Dz2Context : DbContext
             entity.Property(e => e.GroupId)
                 .ValueGeneratedNever()
                 .HasColumnName("group_id");
+            entity.Property(e => e.GroupId)
+.HasDefaultValueSql("nextval('group_id_seq'::regclass)")
+.HasColumnName("group_id");
             entity.Property(e => e.Faculty1).HasColumnName("faculty");
             entity.Property(e => e.GroupName).HasColumnName("group_name");
             entity.Property(e => e.YearOfAdmission).HasColumnName("year_of_admission");
@@ -51,7 +54,7 @@ public partial class Dz2Context : DbContext
             entity.HasKey(e => e.Id).HasName("Idpkey");
             entity.ToTable("GiftedGrants");
             entity.Property(e => e.Id)
-    .HasDefaultValueSql("nextval('student_info_id_seq'::regclass)")
+    .HasDefaultValueSql("nextval('Id_seq'::regclass)")
     .HasColumnName("Id");
 
 
@@ -74,7 +77,7 @@ public partial class Dz2Context : DbContext
                 .HasConstraintName("GiftedGrants_fk1");
         });
 
-       
+
 
         modelBuilder.Entity<GrantsInfo>(entity =>
         {
@@ -92,14 +95,14 @@ public partial class Dz2Context : DbContext
             entity.Property(e => e.MasterGrantValue).HasColumnName("master_grant_value");
         });
 
-       
+
 
         modelBuilder.Entity<Student>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("student_info_pkey");
 
             entity.Property(e => e.Id)
-                .HasDefaultValueSql("nextval('student_info_id_seq'::regclass)")
+                .HasDefaultValueSql("nextval('Id_seq'::regclass)")
                 .HasColumnName("Id");
             entity.Property(e => e.Degree)
                 .HasMaxLength(255)

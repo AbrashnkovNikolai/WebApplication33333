@@ -6,7 +6,8 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <span asp-validation-for="Id" class="text-danger"></span>
             <div class="form-group">
                 <label asp-for="StudentId" class="control-label">Номер студенческого</label>
                 <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
@@ -18,9 +19,9 @@
             <div class="form-group">
                 <label asp-for="GrantValue" class="control-label">Сумма стипендии</label>
                 <input asp-for="GrantValue" class="form-control" />
-                <span asp-validation-for="GrantValue" class="text-danger"></span>
+
             </div>
-            <input type="hidden" asp-for="Id" />
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
