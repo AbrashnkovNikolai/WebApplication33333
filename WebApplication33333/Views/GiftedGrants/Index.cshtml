@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication33333.GiftedGrant>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Idстипендии
+            </th>
+            <th>
+                Размер стипендии
+            </th>
+            <th>
+                Название
+            </th>
+            <th>
+                Номер студенческого
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrantValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrantNameNavigation.GrantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

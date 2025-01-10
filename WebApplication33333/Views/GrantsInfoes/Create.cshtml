@@ -1,0 +1,50 @@
+﻿@model WebApplication33333.GrantsInfo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>GrantsInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="GrantName" class="control-label">Название стипендии</label>
+                <input asp-for="GrantName" class="form-control" />
+                <span asp-validation-for="GrantName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BanclorGrantValue" class="control-label">Размер выплаты бакалаврам</label>
+                <input asp-for="BanclorGrantValue" class="form-control" />
+                <span asp-validation-for="BanclorGrantValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MasterGrantValue" class="control-label">Размер выплаты магистрам</label>
+                <input asp-for="MasterGrantValue" class="form-control" />
+                <span asp-validation-for="MasterGrantValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AspirantGrantValue" class="control-label">Размер выплаты аспирантам</label>
+                <input asp-for="AspirantGrantValue" class="form-control" />
+                <span asp-validation-for="AspirantGrantValue" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться к таблице</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

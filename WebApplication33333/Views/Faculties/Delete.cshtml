@@ -1,0 +1,49 @@
+﻿@model WebApplication33333.Faculty
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>удалить</h1>
+
+
+год постпуления
+
+<h3>Вы уверены что хотите удалить эту запись?</h3>
+<div>
+    <h4>Faculty</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Название факультета
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Faculty1)
+        </dd>
+        <dt class = "col-sm-2">
+            группа
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GroupName)
+        </dd>
+        <dt class = "col-sm-2">
+            год постпуления
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.YearOfAdmission)
+        </dd>
+        <dt class="col-sm-2">
+            Idгруппы
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GroupId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="GroupId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться к таблице</a>
+    </form>
+
+</div>
